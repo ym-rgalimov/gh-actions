@@ -17,4 +17,4 @@ jobs:
     needs:
       - build
     with:
-      environment: production
+      environment: testing
