@@ -1,4 +1,4 @@
-name: Tests Workflow
+name: Build
 
 on:
   workflow_call:
@@ -7,8 +7,8 @@ permissions:
   contents: read
 
 jobs:
-  test:
-    name: Tests
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,8 +19,14 @@ jobs:
         with:
           java-version: '11'
           distribution: 'corretto'
-          
-      - name: Run tests
+
+      - name: Build artifacts
         uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
         with:
-          arguments: test
+          arguments: buildWar
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: war-artifacts
+          path: build/libs/
