@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     env:
-      AWS_REGION: us-east-1
+      AWS_REGION: ${{ secrets.CLUSTER }}
       ECR_REPOSITORY: ecs-repository-example
       ECS_SERVICE: ecs-service-example
       ECS_CLUSTER: ecs-cluster-example
@@ -42,7 +42,7 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+        role-to-assume: ${{ secrets.CLUSTER }}
         aws-region: ${{ env.AWS_REGION }}
 
     - name: Login to Amazon ECR
