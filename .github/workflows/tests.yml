@@ -2,6 +2,9 @@ name: Tests Workflow
 
 on:
   workflow_call:
+  push:
+    branches:
+      - main
 
 permissions:
   contents: read
