@@ -17,4 +17,5 @@ jobs:
     needs:
       - build
     with:
-      environment: testing
+      environment: production
+      secrets: inherit
