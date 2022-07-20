@@ -28,7 +28,7 @@ jobs:
       run: echo ${{ inputs.environment }}
 
     - name: Echo secrets
-      run: echo ${{ secrets.CLUSTER }}
+      run: echo !!!${{ secrets.CLUSTER }}
 
     - name: Checkout
       uses: actions/checkout@v3
