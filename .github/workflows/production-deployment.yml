@@ -6,6 +6,7 @@ on:
       - main
 
 jobs:
+
   tests:
     uses: ./.github/workflows/tests.yml
   build:
