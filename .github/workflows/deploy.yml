@@ -1,25 +1,21 @@
 name: Deployment
 
 on:
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
 
 permissions:
   id-token: write
   contents: read
 
 jobs:
-  tests:
-    uses: ./.github/workflows/tests.yml
-  build:
-    uses: ./.github/workflows/build.yml
-    needs:
-      - tests
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    needs:
-      - build
-    environment: production
+    environment: ${{ inputs.environment }}
     env:
       AWS_REGION: us-east-1
       ECR_REPOSITORY: ecs-repository-example
