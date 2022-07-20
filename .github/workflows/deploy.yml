@@ -24,6 +24,12 @@ jobs:
       ECS_TASK_DEFINITION: .aws/taskDefinition/production.json
       CONTAINER_NAME: cuba
     steps:
+    - name: Echo env
+      run: echo ${{ inputs.environment }}
+
+    - name: Echo secrets
+      run: echo ${{ secrets.CLUSTER }}
+
     - name: Checkout
       uses: actions/checkout@v3
 
